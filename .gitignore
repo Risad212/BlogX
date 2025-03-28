@@ -1,0 +1,10 @@
+# Ignore the vendor directory (installed dependencies)
+vendor/
+
+# Ignore the Composer lock file (optional)
+composer.lock
+
+# Ignore environment files (sensitive credentials)
+.env
+.env.local
+.env.*.local

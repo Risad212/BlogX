@@ -1,0 +1,12 @@
+{
+    "name": "reshad/blog-php",
+    "autoload": {
+        "psr-4": {
+            "classmap": [],
+            "App\\": "app//"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
