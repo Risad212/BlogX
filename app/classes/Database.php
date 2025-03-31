@@ -2,11 +2,14 @@
 
 namespace App\classes;
 
-require_once __DIR__ . '/vendor/autoload.php';
+// Include Composer autoloader
+require_once __DIR__ . '/../../vendor/autoload.php';
 
+// Use the Dotenv class
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(__DIR__);
+// Load the .env file from the root of the project
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../'); // Path to the root directory
 $dotenv->load();
 
 
@@ -14,17 +17,20 @@ class Database
 {
   public static function dbCon()
   {
-    $host = getenv('DB_HOST');
-    $user = getenv('DB_USER');
-    $pass = getenv('DB_PASS');
-    $db = getenv('DB_NAME');
-    return $host;
-    //   try {
-    //     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Enable exception mode
-    //     $link = mysqli_connect($host, $user, $pass, $db);
-    //     return $link;
-    //   } catch (mysqli_sql_exception $e) {
-    //     die("Database connection failed: " . $e->getMessage());
-    //   }
+    $host = $_ENV['DB_HOST'];
+    $user = $_ENV['DB_USER'];
+    $pass = $_ENV['DB_PASS'];
+    $db   = $_ENV['DB_NAME'];
+
+    // Attempt to connect to the database
+    $link = mysqli_connect($host, $user, $pass, $db);
+
+    // Check if connection was successful
+    if (!$link) {
+      // If connection fails, display the error message and stop the script
+      die("Database connection failed: " . mysqli_connect_error());
+    }
+    // If successful, return the connection link
+    return $link;
   }
 }
