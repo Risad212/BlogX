@@ -22,15 +22,14 @@ class Database
     $pass = $_ENV['DB_PASS'];
     $db   = $_ENV['DB_NAME'];
 
-    // Attempt to connect to the database
-    $link = mysqli_connect($host, $user, $pass, $db);
-
-    // Check if connection was successful
-    if (!$link) {
-      // If connection fails, display the error message and stop the script
-      die("Database connection failed: " . mysqli_connect_error());
+    try {
+      $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+      // set the PDO error mode to exception
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      echo "Connected successfully";
+      return $conn;
+    } catch (PDOException $e) {
+      echo "Connection failed: " . $e->getMessage();
     }
-    // If successful, return the connection link
-    return $link;
   }
 }

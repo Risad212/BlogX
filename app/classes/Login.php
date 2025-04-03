@@ -2,34 +2,39 @@
 namespace App\classes;
 
 use App\classes\Database;
+use PDO;
 
 class Login
 {
-  public static  function loginCheck($data)
+  public static function loginCheck($data)
   {
-
     $username = trim($data['username']);
-    $password = trim(md5($data['password']));
+    $password = trim($data['password']); // Do NOT hash passwords manually
 
-    $sql = "SELECT * FROM `users` WHERE `username` = '$username' AND `password` = '$password'";
+    try {
+      $conn = Database::dbCon();
 
-    $result = mysqli_query(Database::dbCon(), $sql);
+      // Use Prepared Statement to prevent SQL Injection
+      $sql = "SELECT * FROM users WHERE username = :username";
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+      $stmt->execute();
 
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result) {
-      if (mysqli_num_rows($result) === 1) {
-        $row = mysqli_fetch_assoc($result);
+      // Verify hashed password
+      if ($row && password_verify($password, $row['password'])) {
         session_start();
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['username'] = $row['username'];
         $_SESSION['name'] = $row['name'];
         header('Location: index.php');
+        exit();
       } else {
-        $login_error = 'username or password not valid';
-        return $login_error;
+        return 'Username or password is incorrect!';
       }
-    } else {
-      die();
+    } catch (PDOException $e) {
+      return 'SQL Error: ' . $e->getMessage();
     }
   }
 }
