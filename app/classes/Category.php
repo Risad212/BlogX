@@ -14,7 +14,6 @@ class Category
     $status = $data['status'] ?? null;
 
     try {
-
       // database connection
       $conn = Database::dbCon();
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -40,10 +39,22 @@ class Category
 
   public function allCategory()
   {
-    $sql = "SELECT * FROM `category`";
-    $result = mysqli_query(Database::dbCon(), $sql);
-    return $result;
+    try {
+      $conn = Database::dbCon(); // Database connection
+      $sql = "SELECT * FROM `category`";
+      $stmt = $conn->prepare($sql);  // Prepare the SQL statement
+      $stmt->execute();  // Execute the query
+
+      // Fetch all categories as an associative array
+      $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      return $categories;  // Return the result
+    } catch (PDOException $e) {
+      echo 'Error: ' . $e->getMessage();  // Handle potential errors
+      return null;  // Return null if there is an error
+    }
   }
+
 
 
   public function active($id)

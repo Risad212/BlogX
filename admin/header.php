@@ -1,15 +1,16 @@
 <?php
 session_start();
-if(!isset($_SESSION['user_id'])){
+if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
 }
 
-$page = explode("/",$_SERVER['PHP_SELF']);
+$page = explode("/", $_SERVER['PHP_SELF']);
 $page = end($page);
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,16 +38,16 @@ $page = end($page);
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet" />
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-  <section id="container">
-      <!--header start-->
-      <header class="header white-bg">
-              <div class="sidebar-toggle-box">
-                  <i class="fa fa-bars"></i>
-              </div>
+    <section id="container">
+        <!--header start-->
+        <header class="header white-bg">
+            <div class="sidebar-toggle-box">
+                <i class="fa fa-bars"></i>
+            </div>
             <!--logo start-->
             <a href="index.html" class="logo">Flat<span>lab</span></a>
             <!--logo end-->
@@ -123,7 +124,7 @@ $page = end($page);
                                         <div class="percent">45%</div>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
                                             <span class="sr-only">45% Complete</span>
                                         </div>
                                     </div>
@@ -151,8 +152,8 @@ $page = end($page);
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="img/avatar-mini.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">Jonathan Smith</span>
-                                    <span class="time">Just now</span>
+                                        <span class="from">Jonathan Smith</span>
+                                        <span class="time">Just now</span>
                                     </span>
                                     <span class="message">
                                         Hello, this is an example msg.
@@ -163,11 +164,11 @@ $page = end($page);
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="img/avatar-mini2.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">Jhon Doe</span>
-                                    <span class="time">10 mins</span>
+                                        <span class="from">Jhon Doe</span>
+                                        <span class="time">10 mins</span>
                                     </span>
                                     <span class="message">
-                                     Hi, Jhon Doe Bhai how are you ?
+                                        Hi, Jhon Doe Bhai how are you ?
                                     </span>
                                 </a>
                             </li>
@@ -175,8 +176,8 @@ $page = end($page);
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="img/avatar-mini3.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">Jason Stathum</span>
-                                    <span class="time">3 hrs</span>
+                                        <span class="from">Jason Stathum</span>
+                                        <span class="time">3 hrs</span>
                                     </span>
                                     <span class="message">
                                         This is awesome dashboard.
@@ -187,8 +188,8 @@ $page = end($page);
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="img/avatar-mini4.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">Jondi Rose</span>
-                                    <span class="time">Just now</span>
+                                        <span class="from">Jondi Rose</span>
+                                        <span class="time">Just now</span>
                                     </span>
                                     <span class="message">
                                         Hello, this is metrolab
@@ -266,7 +267,7 @@ $page = end($page);
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <img alt="" src="img/avatar1_small.jpg">
-                            <span class="username"><?= $_SESSION['name']?></span>
+                            <span class="username"><?= $_SESSION['name'] ?></span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout dropdown-menu-right">
@@ -285,38 +286,38 @@ $page = end($page);
                 <!--search & user info end-->
             </div>
         </header>
-      <!--header end-->
-
-      
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-                  <li>
-                      <a <?= $page == 'index.php'? 'class="active"': "" ?> href="index.php">
-                          <i class="fa fa-dashboard"></i>
-                          <span>Dashboard</span>
-                      </a>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" <?= $page == 'add-category.php'? "class='active'": "" ?> <?= $page == 'manage-category.php' ? "class='active'": "" ?>>
-                          <i class="fa fa-laptop"></i>
-                          <span>Categories</span>
-                      </a>
-                      <ul class="sub">
-                          <li <?= $page == 'add-category.php' ? "class='active'": "" ?>><a  href="add-category.php">Add Category</a></li>
-                          <li <?= $page == 'manage-category.php' ? "class='active'": "" ?>><a  href="manage-category.php">Manage Categories</a></li>
-                      </ul>
-                  </li>
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
+        <!--header end-->
 
 
-      <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper">
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+                    <li>
+                        <a <?= $page == 'index.php' ? 'class="active"' : "" ?> href="index.php">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="javascript:;" <?= $page == 'add-category.php' ? "class='active'" : "" ?> <?= $page == 'manage-category.php' ? "class='active'" : "" ?>>
+                            <i class="fa fa-laptop"></i>
+                            <span>Categories</span>
+                        </a>
+                        <ul class="sub">
+                            <li <?= $page == 'add-category.php' ? "class='active'" : "" ?>><a href="add-category.php">Add Category</a></li>
+                            <li <?= $page == 'manage-category.php' ? "class='active'" : "" ?>><a href="manage-category.php">Manage Categories</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+
+
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
