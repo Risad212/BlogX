@@ -56,19 +56,62 @@ class Category
   }
 
 
-
-  public function active($id)
-  {
-    mysqli_query(Database::dbCon(), "UPDATE `category` SET  `status` = 1 WHERE `id` = '$id'");
-  }
-
-  public function inactive($id)
-  {
-    mysqli_query(Database::dbCon(), "UPDATE `category` SET  `status` = 0 WHERE `id` = '$id'");
-  }
-
   public function delete($id)
   {
-    mysqli_query(Database::dbCon(), "DELETE FROM `category` WHERE `id` = '$id'");
+    try {
+      $conn = Database::dbCon();
+      $sql = "DELETE FROM category WHERE id = :id";
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+      if ($stmt->execute()) {
+        echo " category deleted successfully.";
+      } else {
+        echo "Failed to delete category.";
+      }
+    } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+    }
+  }
+
+
+  public function getCategoryById($id)
+  {
+    try {
+      $conn = Database::dbCon();
+      $sql = "SELECT * FROM category WHERE id = :id";
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt->execute();
+
+      return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+    }
+  }
+
+
+  public function updateCategory($data)
+  {
+    $category_name = $data['category_name'];
+    $status = $data['status'];
+    try {
+      $conn = Database::dbCon();
+
+      $sql = "UPDATE category SET category_name = :category_name, status = :status WHERE id = :id";
+      $stmt = $conn->prepare($sql);
+
+      $stmt->bindParam(':category_name', $category_name, PDO::PARAM_STR);
+      $stmt->bindParam(':status', $status, PDO::PARAM_INT);
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+      if ($stmt->execute()) {
+        return "Category updated successfully.";
+      } else {
+        return "Failed to update category.";
+      }
+    } catch (PDOException $e) {
+      return "Error: " . $e->getMessage();
+    }
   }
 }

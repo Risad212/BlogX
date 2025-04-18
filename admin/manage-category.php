@@ -45,8 +45,8 @@ if (isset($_GET['inactive'])) {
                                     <td><?= $row['category_name'] ?></td>
                                     <td><?= $row['status'] == 1 ? "active" : "inactive" ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-pencil pr-1"></i>Edit</a>
-                                        <a href="delete.php?id=<?= $row['id'] ?>&cat=cat" class="btn btn-danger btn-sm"><i class="fa fa-trash-o pr-1"></i>Delete</a>
+                                        <a href="edit-category.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm"><i class="fa fa-pencil pr-1"></i>Edit</a>
+                                        <a href="delete-category.php?id=<?= $row['id'] ?>&cat=cat" class="btn btn-danger btn-sm"><i class="fa fa-trash-o pr-1"></i>Delete</a>
                                     </td>
                                 </tr>
                             <?php $sl++;
