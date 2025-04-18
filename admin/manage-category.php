@@ -45,15 +45,6 @@ if (isset($_GET['inactive'])) {
                                     <td><?= $row['category_name'] ?></td>
                                     <td><?= $row['status'] == 1 ? "active" : "inactive" ?></td>
                                     <td>
-                                        <?php
-                                        if ($row['status'] == 1) { ?>
-                                            <a href="status.php?id=<?= $row["id"] ?>&cat=category&inactive=inactive" class="btn btn-warning btn-sm"><i class="fa fa-arrow-down pr-1"></i>Inactive</a>
-                                        <?php
-                                        } else { ?>
-                                            <a href="status.php?id=<?= $row["id"] ?>&cat=category&active=active" class="btn btn-info btn-sm"><i class="fa fa-arrow-up pr-1"></i>Active</a>
-                                        <?php
-                                        }
-                                        ?>
                                         <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-pencil pr-1"></i>Edit</a>
                                         <a href="delete.php?id=<?= $row['id'] ?>&cat=cat" class="btn btn-danger btn-sm"><i class="fa fa-trash-o pr-1"></i>Delete</a>
                                     </td>
