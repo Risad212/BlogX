@@ -9,9 +9,12 @@ if ($_GET['id']) {
     $catStatus = $getCatId['status'];
 }
 
-if (isset($_POST['edit-category'])) {
+if (isset($_POST)) {
+    var_dump($_POST);
     $insertMeg = $category->updateCategory($_POST);
 }
+
+
 
 ?>
 <div class="row">
@@ -31,6 +34,7 @@ if (isset($_POST['edit-category'])) {
                         <label for="category_name" class="col-sm-4 col-form-label">Category Name</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="category_name" name="category_name" value="<?php echo $catName ?>">
+                            <input type="text" class="form-control" id="category_id" name="category_id" value="<?php echo $id ?>" hidden>
                         </div>
                     </div>
                     <fieldset class="form-group">

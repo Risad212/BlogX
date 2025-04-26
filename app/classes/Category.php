@@ -93,6 +93,7 @@ class Category
 
   public function updateCategory($data)
   {
+    $id = $data['category_id'];
     $category_name = $data['category_name'];
     $status = $data['status'];
     try {

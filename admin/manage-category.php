@@ -32,7 +32,7 @@ if (isset($_GET['inactive'])) {
                             <tr>
                                 <td>Sl No</td>
                                 <td>Category Name</td>
-                                <td>Status</td>
+                                <td>status</td>
                                 <td style="width: 250px">Action</td>
                             </tr>
                         </thead>
